@@ -1,0 +1,67 @@
+{% extends "jobs/base.html" %}
+{% load static %}
+{% block title %}Govardhan | Front-end Developer{% endblock title %}
+{% block content %}
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}"><img height="50px" src="{% static "img/g-logo.png" %}" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'say_hello' %}">
+              <button class="btn btn-rounded hello-btn">Say Hello</button>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+ {% include "jobs/inc/intro.html" %}
+
+  <section class="projects">
+    <div class="text-center projects-title">
+      <h2>My Recent Works</h2>
+      <p>Heare are a few developed projects. Want see more? <a href="mailto:kgovardhan409@outlook.com">Email me.</a></p>
+    </div>
+    <div class="container">
+      <div class="row">
+{% for job in jobs %}
+        
+        <div class="project1-main col-lg-4 col-sm-12 py-4">
+          <div class="project1-img">
+            <img class="img-fluid" src="{{ job.image.url }}"
+              alt="{{ job.summary }}">
+          </div>
+          <div class="project-text">
+            <p>{{ job.summary }}</p>
+            <a href="{{ job.link }}"><button class="btn btn-rounded hello-btn">View more</button></a>
+          </div>
+        </div>
+
+{% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <div class="row col-12 start-a-project">
+      <div class="col-lg-4 col-sm-12 start-a-project-title">
+        Start a project
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <p>
+          Interested in working together? We should queue up a chat. I’ll buy the coffee.
+        </p>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+       <a href="{% url 'say_hello' %}"> <button class="btn btn-rounded lets-do-btn">Let's do this</button></a>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
